@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:neverendinggestures/widgets/counter_style.dart';
 
-enum GestureType { tap, doubleTap }
+enum GestureType { tap, doubleTap, longPress, swipe }
 
 class GesturesArea extends StatelessWidget {
   final int counter;
@@ -22,21 +22,24 @@ class GesturesArea extends StatelessWidget {
     if (gestureType == detectedGestureType) onGesture();
   }
 
+  void onPanEnd(DragEndDetails details) {
+    onGesture();
+  }
+
   @override
   Widget build(BuildContext context) {
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
-//    debugPaintPointersEnabled = true;
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-
       onTap: gestureType == GestureType.tap ? onGesture : null,
       onDoubleTap: gestureType == GestureType.doubleTap ? onGesture : null,
+      onLongPress: gestureType == GestureType.longPress ? onGesture : null,
+      onPanEnd: gestureType == GestureType.swipe ? onPanEnd : null,
       child: Container(
-        alignment: Alignment.center,
+        padding: EdgeInsets.all(16.0),
         color: counterStyle.backColor,
-
-//        color: Colors.red,
+        alignment: counterStyle.alignment,
         child: Text(
           localizations.formatDecimal(counter),
           style: counterStyle.textStyle,

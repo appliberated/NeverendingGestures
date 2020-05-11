@@ -10,7 +10,7 @@ class CounterStyle {
   Color backColor;
 
   static const double _minFontSize = 10.0;
-  static const double _maxFontSize = 96.0;
+  static const double _maxFontSize = 112.0;
 
   /// Available font features
   ///
@@ -42,6 +42,12 @@ class CounterStyle {
 
   final Random _random = Random();
 
+  static const _alignmentValues = [Alignment.topLeft, Alignment.topCenter, Alignment.topRight,
+    Alignment.centerLeft, Alignment.center, Alignment.centerRight,
+    Alignment.bottomLeft, Alignment.bottomCenter, Alignment.bottomRight];
+
+  Alignment alignment = Alignment.center;
+
   /// The text style
   TextStyle _textStyle = TextStyle();
 
@@ -50,6 +56,7 @@ class CounterStyle {
   void shuffle() {
     backColor = _shuffledBackColor();
 
+    alignment = _random.nextBool() ? Alignment.center : _random.fromList(_alignmentValues);
 
     _textStyle = TextStyle(
       fontSize: _random.doubleInRange(_minFontSize, _maxFontSize),
@@ -58,7 +65,7 @@ class CounterStyle {
       fontFeatures: [FontFeature(_random.fromList(_fontFeatures))],
       letterSpacing: _random.doubleInRange(-2.0, 15.0),
     );
-    print(_textStyle);
+//    print(_textStyle);
   }
 
   Color _shuffledBackColor() {
