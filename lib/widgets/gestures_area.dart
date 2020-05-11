@@ -34,7 +34,7 @@ class GesturesArea extends StatelessWidget {
       onDoubleTap: gestureType == GestureType.doubleTap ? onGesture : null,
       child: Container(
         alignment: Alignment.center,
-//        color: Colors.red,
+        color: counterStyle.backColor,
 
 //        color: Colors.red,
         child: Text(

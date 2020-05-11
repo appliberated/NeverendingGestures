@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:neverendinggestures/common/app_strings.dart';
 import 'package:neverendinggestures/screens/home.dart';
+import 'package:neverendinggestures/utils/color_utils.dart';
 
 void main() {
   runApp(NeverendingGesturesApp());
@@ -15,9 +15,7 @@ class NeverendingGesturesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-
+        primarySwatch: Colors.white.createMaterialColor(),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomeScreen(),
